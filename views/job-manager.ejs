@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+       margin: 0;
+        padding: 0;
+        font-family: 'Baloo 2';
+        font-weight: 400;
+        font-style: normal;
+      background-color: #fffaf5; /* Soft cream baking theme */
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 20px;
+      color: black; /* Soft brownish pink */
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+     input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 100%;
+      transition: border-color 0.3s;
+    }
+
+    input:focus{
+        border-color: royalblue;
+        outline: none;
+    }
+
+    button {
+      cursor: pointer;
+      padding: 12px;
+      background-color: royalblue;
+      color: white;
+      border-radius: 8px;
+      border: none;
+      font-size: 1.1rem;
+      transition: all 0.5s;
+    }
+
+    button:hover {
+      background-color: rgb(50, 94, 226);
+      transform: scale(1.03);
+    }
+
+     .hero-img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    label{
+        font-size: 1.2rem;
+    }
+
+    .saved-btn{
+      margin: 10px;
+      cursor: pointer;
+      padding: 12px;
+      background-color: green;
+      color: white;
+      border-radius: 8px;
+      border: none;
+      font-size: 1.1rem;
+      transition: all 0.5s;
+      width: 20%;
+    }
+
+    .saved-btn:hover {
+      background-color: rgb(68, 157, 68);
+      transform: scale(1.03);
+    }
+
+    .acc-btn{
+      margin: 10px;
+      cursor: pointer;
+      padding: 12px;
+      background-color: rgb(210, 68, 92);
+      color: white;
+      border-radius: 8px;
+      border: none;
+      font-size: 1.1rem;
+      transition: all 0.5s;
+      width: 20%;
+    }
+
+    .acc-btn:hover {
+      background-color: rgb(222, 92, 114);
+      transform: scale(1.03);
+    }
+
+    .btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+</style>
+
+<body>
+    <div class="container">
+        <h1 class="title">Enter Job details you applied</h1>
+        <img src="/images/asset 1.png" alt="" class="hero-img">
+        <div class="btn">
+            <button type="button" onclick="window.location.href='/saved-jobs'" class="saved-btn"> Go to saved jobs</button>
+            <button type="button" onclick="window.location.href='/account'" class="acc-btn"> Go to Account</button>
+        </div>
+        <div class="section">
+            <form action="/applied-jobs" method="post">
+                <input type="text" name="title" placeholder="Job title">
+                <input type="text" name="company" placeholder="Company name">
+                <input type="text" name="skills" placeholder="Skills required">
+                <input type="number"  name="experience" placeholder="Experienced required" id="experience">
+                <label for="date"> Applied date
+                    <input type="date" name="appliedDate" id="date">
+                </label>
+                <button type="submit">Add details</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+            const setLimit=()=>{
+                const experience= document.getElementById('experience').addEventListener('input', (e)=>{
+                let val=e.target.value
+                if(val<0) e.target.value = 0
+                })
+
+            }
+            setLimit()
+
+    </script>
+</body>
+</html>

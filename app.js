@@ -19,6 +19,7 @@ app.use(cookie())
 // DB
 
 const userAcc= require('./Db/account')
+const job= require('./Db/job')
 
 
 app.get('/',(req,res)=>{
@@ -73,12 +74,39 @@ app.post('/login', async(req,res)=>{
       }else{
         const token= jwt.sign({email: email}, 'abc')
         res.cookie("token", token) 
-        res.send("You have logged in")
+        // res.redirect('/job-manager')
+        res.redirect('/job-manager')
       }
     })
 
   }catch(error){
     res.status(500).send("Error while login please try again later")
+  }
+})
+
+app.get('/job-manager', (req,res)=>{
+  res.render('job-manager')
+})
+
+app.post('/applied-jobs',verifyUser, async(req,res)=>{
+
+  try{
+    const{title,company,skills,experience, appliedDate}= req.body 
+
+    await job.create({
+      email: req.user.email,
+      title,
+      company,
+      skills,
+      experience,
+      appliedDate
+    })
+
+    res.send("Details saved")
+
+  }catch(error){
+    console.log("The error for adding job detials is ", error)
+    res.status(500).send("Error in adding job detilas please try later")
   }
 })
 
