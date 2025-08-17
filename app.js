@@ -110,6 +110,17 @@ app.post('/applied-jobs',verifyUser, async(req,res)=>{
   }
 })
 
+app.get('saved-jobs', async(req,res)=>{
+
+    const jobs=await job.findOne({email: email})
+    res.render('saved-jobs', {jobs})
+})
+
+app.get('account', (req,res)=>{
+
+})
+
+
 
 const PORT=3000
 
