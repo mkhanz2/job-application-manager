@@ -91,12 +91,14 @@ app.get('/job-manager', (req,res)=>{
 app.post('/applied-jobs',verifyUser, async(req,res)=>{
 
   try{
-    const{title,company,skills,experience, appliedDate}= req.body 
+    const{title,company,type,location,skills,experience, appliedDate}= req.body 
 
     await job.create({
       email: req.user.email,
       title,
       company,
+      type,
+      location,
       skills,
       experience,
       appliedDate
@@ -110,10 +112,18 @@ app.post('/applied-jobs',verifyUser, async(req,res)=>{
   }
 })
 
-app.get('saved-jobs', async(req,res)=>{
-
-    const jobs=await job.findOne({email: email})
+app.get('/saved-jobs',verifyUser, async(req,res)=>{
+    const jobs=await job.find({email: req.user.email})
     res.render('saved-jobs', {jobs})
+})
+
+app.get('/delete/:id', verifyUser, async(req,res)=>{
+  try{
+    await job.findOneAndDelete({_id: req.params.id})
+    res.redirect('/saved-jobs')
+  }catch(error){
+    res.status(500).send("Error in removing job detail please try again later")
+  }
 })
 
 app.get('account', (req,res)=>{

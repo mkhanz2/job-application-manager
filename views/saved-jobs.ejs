@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jobs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Baloo 2', cursive;
+      /* background-color:  rgb(172, 219, 172); */
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+    }
+
+    button{
+      cursor: pointer;
+      padding: 10px 20px;
+      background-color: royalblue;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      margin: 5px;
+      transition: all 0.5s;
+    }
+
+    button:hover{
+      transform: scale(1.1);
+    }
+
+    a>img{
+      height: 100px;
+      margin: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .title {
+        font-size: 2rem;
+      }
+    }
+
+    .remove-btn{
+        background-color: red;
+    }
+
+    .remove-btn:hover{
+        background-color: rgb(242, 87, 87);
+    }
+
+
+
+    .jobApplied-btn{
+      width: 90%;
+      background-color: rgb(201, 122, 135);
+    }
+
+  </style>
+</head>
+<body>
+
+
+
+  <div class="container">
+    <h1 class="title">Apply now</h1>
+    <img src="/images/asset 1.png" alt="" class="hero-img">
+
+  
+
+    <button onclick="window.location.href='/job-manager'">Home</button>
+    <!-- 1 -->
+     <% jobs.forEach((job)=>{ %>
+        <div class="section">
+        <h2><%= job.title %></h2>
+        <ul>
+          <li>Company: <%=job.company%></li>
+          <li>Type: <%=job.type%></li>
+          <li>Location: <%=job.location%></li>
+          <li>Skiils: <%=job.skills%></li>
+          <li>Experience: <%=job.experience%></li>
+          <li>Applied: <%=job.appliedDate%></li>
+        </ul>
+        <a href="/delete/<%=job._id%>">
+            <button class="remove-btn">Remove</button>
+        </a>
+    <% }) %>
+</div>
+
+</body>
+</html> 
