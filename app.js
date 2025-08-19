@@ -126,8 +126,9 @@ app.get('/delete/:id', verifyUser, async(req,res)=>{
   }
 })
 
-app.get('account', (req,res)=>{
-
+app.get('/account',verifyUser, async (req,res)=>{
+  const userDetails= await userAcc.findOne({email: req.user.email})
+  res.render('account', {userDetails})
 })
 
 
